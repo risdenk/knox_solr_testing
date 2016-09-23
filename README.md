@@ -14,6 +14,8 @@
 1. `docker-compose -f docker-compose.yml -f docker-compose-dev.yml build`
 2. `docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d`
 3. Check the URLs above.
+4. Edit `solr/*/{service.xml,rewrite.xml}`
+5. `docker-compose exec knox sh -c "touch conf/topologies/default.xml"`
 
 ## References
 
