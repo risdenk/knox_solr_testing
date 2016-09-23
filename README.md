@@ -2,8 +2,8 @@
 
 ## Getting Started
 1. `docker-compose up -d`
-2. Check the URLs below.
-3. `./test_knox_solr.sh`
+2. `./test_knox_solr.sh`
+3. Open https://localhost:8443/gateway/default/solr/
 
 ## URLs
 * `https://localhost:8443/gateway/default/solr/index.html#/`
