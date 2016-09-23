@@ -2,7 +2,9 @@ version: '2'
 services:
  ldap:
     build: ./knox
+    image: risdenk/knox_solr_testing:knox
 
  knox:
     build: ./knox
+    image: risdenk/knox_solr_testing:knox
 
