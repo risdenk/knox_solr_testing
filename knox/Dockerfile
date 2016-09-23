@@ -1,0 +1,18 @@
+FROM openjdk:8-jre-alpine
+
+RUN apk --no-cache add bash procps
+RUN adduser -S knox
+
+ENV KNOX_VERSION 0.9.1
+
+ADD http://download.nextag.com/apache/knox/${KNOX_VERSION}/knox-${KNOX_VERSION}.zip /
+RUN unzip /knox-${KNOX_VERSION}.zip && rm knox-${KNOX_VERSION}.zip && ln -nsf /knox-${KNOX_VERSION} /knox && chmod +x /knox/bin/*.sh
+ADD master /knox/data/security/master
+RUN chown -R knox /knox/
+
+ADD ldap.sh /ldap.sh
+ADD gateway.sh /gateway.sh
+
+USER knox
+WORKDIR /knox
+
