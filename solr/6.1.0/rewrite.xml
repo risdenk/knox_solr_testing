@@ -16,8 +16,20 @@
    limitations under the License.
 -->
 <rules>
-  <rule dir="IN" name="SOLR/solr/inbound" pattern="*://*:*/**/solr/{**}?{**}">
+   <rule dir="IN" name="SOLR/solr/inbound/root" pattern="*://*:*/**/solr/">
+    <rewrite template="{$serviceUrl[SOLR]}/"/>
+  </rule>
+  <rule dir="IN" name="SOLR/solr/inbound/path" pattern="*://*:*/**/solr/{**}">
+    <rewrite template="{$serviceUrl[SOLR]}/{**}"/>
+  </rule>
+  <rule dir="IN" name="SOLR/solr/inbound/query" pattern="*://*:*/**/solr/{**}?{**}">
     <rewrite template="{$serviceUrl[SOLR]}/{**}?{**}"/>
+  </rule>
+  <rule dir="OUT" name="SOLR/solr/outbound/root" pattern="/solr/{**}">
+    <rewrite template="{$frontend[topology]}/solr/{**}"/>
+  </rule>
+  <rule dir="OUT" name="SOLR/solr/outbound/path" pattern="/solr/{**}?{**}">
+    <rewrite template="{$frontend[topology]}/solr/{**}?{**}"/>
   </rule>
 </rules>
 
