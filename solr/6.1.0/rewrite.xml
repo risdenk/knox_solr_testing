@@ -25,14 +25,14 @@
   <rule dir="IN" name="SOLR/solr/inbound/query" pattern="*://*:*/**/solr/{**}?{**}">
     <rewrite template="{$serviceUrl[SOLR]}/{**}?{**}"/>
   </rule>
- 
+
   <rule dir="OUT" name="SOLR/solr/outbound/solrpath">
-      <rewrite template="resource('{$frontend[path]}/solr"/>-->
+      <rewrite template="{$frontend[path]}/solr/"/>
   </rule>
   
   <filter name="SOLR/solr/outbound/app">
       <content type="application/javascript">
-          <apply path="resource\('/solr" rule="SOLR/solr/outbound/solrpath"/>
+          <apply path="/solr/" rule="SOLR/solr/outbound/solrpath"/>
       </content>
   </filter>
 </rules>
