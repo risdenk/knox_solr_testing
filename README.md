@@ -1,5 +1,7 @@
 # Knox Solr
 
+[![Build Status](https://travis-ci.org/risdenk/knox_solr_testing.svg?branch=master)](https://travis-ci.org/risdenk/knox_solr_testing)
+
 ## Getting Started
 1. `docker-compose up -d`
 2. `./test_knox_solr.sh`
