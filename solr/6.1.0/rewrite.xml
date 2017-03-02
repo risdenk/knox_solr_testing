@@ -16,24 +16,21 @@
    limitations under the License.
 -->
 <rules>
-   <rule dir="IN" name="SOLR/solr/inbound/root" pattern="*://*:*/**/solr/">
+  <!-- inbound rules -->
+  <rule dir="IN" name="SOLR/solr/inbound/root" pattern="*://*:*/**/solr/">
     <rewrite template="{$serviceUrl[SOLR]}/"/>
-  </rule>
-  <rule dir="IN" name="SOLR/solr/inbound/path" pattern="*://*:*/**/solr/{**}">
-    <rewrite template="{$serviceUrl[SOLR]}/{**}"/>
   </rule>
   <rule dir="IN" name="SOLR/solr/inbound/query" pattern="*://*:*/**/solr/{**}?{**}">
     <rewrite template="{$serviceUrl[SOLR]}/{**}?{**}"/>
   </rule>
 
-  <rule dir="OUT" name="SOLR/solr/outbound/solrpath">
-      <rewrite template="{$frontend[path]}/solr/"/>
-  </rule>
-  
-  <filter name="SOLR/solr/outbound/app">
-      <content type="application/javascript">
-          <apply path="/solr/" rule="SOLR/solr/outbound/solrpath"/>
-      </content>
+  <filter name="SOLR/solr/outbound/filter/contextpath">
+    <content type="application/javascript">
+      <apply path="\/solr\/" rule="SOLR/solr/outbound/contextpath"/>
+    </content>
   </filter>
-</rules>
 
+  <rule dir="OUT" name="SOLR/solr/outbound/contextpath">
+    <rewrite template="{$frontend[path]}/solr/"/>
+  </rule>
+</rules>

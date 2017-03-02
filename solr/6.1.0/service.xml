@@ -16,19 +16,13 @@
    limitations under the License.
 -->
 <service role="SOLR" name="solr" version="6.1.0">
-    <policies>
-        <policy role="webappsec"/>
-        <policy role="authentication" name="Anonymous"/>
-        <policy role="rewrite"/>
-        <policy role="authorization"/>
-    </policies>
     <routes>
-        <route path="/solr">
-            <rewrite apply="SOLR/solr/outbound/app" to="response.body"/>
+        <route path="/solr/">
+            <rewrite apply="SOLR/solr/inbound/root" to="request.url"/>
         </route>
-        <route path="/solr/**">
-            <rewrite apply="SOLR/solr/outbound/app" to="response.body"/>
+        <route path="/solr/**?**">
+            <rewrite apply="SOLR/solr/inbound/query" to="request.url"/>
+            <rewrite apply="SOLR/solr/outbound/filter/contextpath" to="response.body"/>
         </route>
     </routes>
-     <dispatch classname="org.apache.hadoop.gateway.dispatch.PassAllHeadersDispatch"/>
 </service>
