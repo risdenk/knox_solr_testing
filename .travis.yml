@@ -10,7 +10,7 @@ before_install:
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
 - docker-compose up -d
-- sleep 15
+- sleep 30
 
 script:
 - ./run_test.sh
