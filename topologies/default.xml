@@ -81,6 +81,6 @@
 
     <service>
         <role>SOLR</role>
-        <url>http://solr:8983/solr</url>
+        <url>http://solr.example.com:8983/solr</url>
     </service>
 </topology>

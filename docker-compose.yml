@@ -6,19 +6,42 @@ services:
 
   knox:
     image: risdenk/knox_solr_testing:knox
+    container_name: knox
     ports:
     - "8443:8443"
     command: /gateway.sh
     volumes:
-     - ./topologies:/knox/conf/topologies
-     - ./solr:/knox/data/services/solr
+    - ./topologies:/knox/conf/topologies
+    - ./solr/6.0.0:/knox/data/services/solr/6.0.0
+    volumes_from:
+    - kdc
     depends_on:
     - ldap
+    - kdc
 
   solr:
     image: solr:alpine
+    container_name: solr
+    depends_on:
+    - kdc
+    volumes_from:
+    - kdc
     ports:
     - "8983"
     - "9983"
-    command: -c
+    volumes:
+    - ./solr/jaas.conf:/jaas.conf
+    command: bin/solr start -c -f -h solr.example.com -a '-DauthenticationPlugin=org.apache.solr.security.KerberosPlugin -Dsolr.kerberos.jaas.appname=SolrClient -Djava.security.auth.login.config=/jaas.conf -Dsolr.kerberos.principal=HTTP/solr.example.com@EXAMPLE.COM -Dsolr.kerberos.keytab=/etc/docker-kdc/solr.keytab -Dsolr.kerberos.cookie.domain=solr.example.com -Dsolr.kerberos.name.rules=DEFAULT -Djava.security.krb5.conf=/etc/docker-kdc/krb5.conf'
 
+  kdc:
+    image: risdenk/knox_solr_testing:kdc
+    ports:
+    - "88"
+    - "88/udp"
+    volumes:
+    - /etc/docker-kdc
+
+networks:
+  default:
+    external:
+      name: example.com

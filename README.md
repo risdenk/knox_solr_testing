@@ -3,9 +3,10 @@
 [![Build Status](https://travis-ci.org/risdenk/knox_solr_testing.svg?branch=master)](https://travis-ci.org/risdenk/knox_solr_testing)
 
 ## Getting Started
-1. `docker-compose up -d`
-2. `./test_knox_solr.sh`
-3. Open https://localhost:8443/gateway/default/solr/
+1. `docker network create example.com`
+2. `docker-compose up -d`
+3. `./test_knox_solr.sh`
+4. Open https://localhost:8443/gateway/default/solr/
 
 ### URLs
 * `https://localhost:8443/gateway/default/solr/index.html#/`
