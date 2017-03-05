@@ -12,7 +12,6 @@ services:
     command: /gateway.sh
     volumes:
     - ./topologies:/knox/conf/topologies
-    - ./solr/6.0.0:/knox/data/services/solr/6.0.0
     volumes_from:
     - kdc
     depends_on:
