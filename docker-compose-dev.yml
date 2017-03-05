@@ -8,3 +8,7 @@ services:
     build: ./knox
     image: risdenk/knox_solr_testing:knox
 
+ kdc:
+    build: ./kdc
+    image: risdenk/knox_solr_testing:kdc
+

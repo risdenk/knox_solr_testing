@@ -7,7 +7,11 @@ ENV KNOX_VERSION 0.11.0
 
 RUN wget -q -O /knox-${KNOX_VERSION}.zip http://download.nextag.com/apache/knox/${KNOX_VERSION}/knox-${KNOX_VERSION}.zip && unzip /knox-${KNOX_VERSION}.zip && rm knox-${KNOX_VERSION}.zip && ln -nsf /knox-${KNOX_VERSION} /knox && chmod +x /knox/bin/*.sh && chown -R knox /knox/
 
-ADD master /knox/data/security/master
+COPY master /knox/data/security/master
+COPY gateway-site.xml /knox/conf/gateway-site.xml
+COPY krb5JAASLogin.conf /knox/conf/krb5JAASLogin.conf
+COPY gateway-log4j.properties /knox/conf/gateway-log4j.properties
+
 RUN chown -R knox /knox/data/security
 
 ADD ldap.sh /ldap.sh
