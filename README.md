@@ -17,12 +17,8 @@
 #### Upload a config
 `docker-compose exec solr sh -c "./bin/solr zk upconfig -d data_driven_schema_configs -n data_driven_schema -z localhost:9983"`
 
-## Development
-### Test new rewrite rules
-1. Edit `solr/*/{service.xml,rewrite.xml}`
-2. `touch conf/topologies/default.xml`
-
-### Rebuild Knox image
+### Development
+#### Rebuild Knox image
 1. `docker-compose -f docker-compose.yml -f docker-compose-dev.yml build`
 2. `docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d`
 3. Check the URLs above.
