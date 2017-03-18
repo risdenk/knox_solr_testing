@@ -11,7 +11,7 @@ before_install:
 - sudo mv docker-compose /usr/local/bin
 - docker network create example.com
 - docker-compose up -d
-- sleep 30
+- sleep 60
 
 script:
 - ./run_test.sh
