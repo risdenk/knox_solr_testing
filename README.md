@@ -6,7 +6,9 @@
 1. `docker network create example.com`
 2. `docker-compose up -d`
 3. `./test_knox_solr.sh`
-4. Open https://localhost:8443/gateway/default/solr/
+4. `open https://localhost:8443/gateway/default/solr/`
+5. `docker-compose down -v --remove-orphans --rmi=all`
+6. `docker network rm example.com`
 
 ### URLs
 * `https://localhost:8443/gateway/default/solr/index.html#/`
