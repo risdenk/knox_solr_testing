@@ -5,7 +5,7 @@ RUN adduser -S knox
 
 ENV KNOX_VERSION 0.13.0
 
-RUN wget -q -O /knox-${KNOX_VERSION}.zip https://dist.apache.org/repos/dist/dev/knox/knox-${KNOX_VERSION}/knox-${KNOX_VERSION}.zip && unzip /knox-${KNOX_VERSION}.zip && rm knox-${KNOX_VERSION}.zip && mv /knox-${KNOX_VERSION} /knox-${KNOX_VERSION} && ln -nsf /knox-${KNOX_VERSION} /knox && chmod +x /knox/bin/*.sh && chown -R knox /knox/
+RUN wget -q -O /knox-${KNOX_VERSION}.zip https://dist.apache.org/repos/dist/release/knox/${KNOX_VERSION}/knox-${KNOX_VERSION}.zip && unzip /knox-${KNOX_VERSION}.zip && rm knox-${KNOX_VERSION}.zip && ln -nsf /knox-${KNOX_VERSION} /knox && chmod +x /knox/bin/*.sh && chown -R knox /knox/
 
 COPY master /knox/data/security/master
 COPY gateway-site.xml /knox/conf/gateway-site.xml
